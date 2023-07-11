@@ -5,13 +5,13 @@ const states = [
   'Abia',
   'Adamawa',
   'Akwa Ibom',
-  // ...add the rest of the states
+  // ...the rest of the states
 ];
 
 const lgasByState = {
   Abia: ['Aba North', 'Aba South', 'Umuahia North', 'Umuahia South', /* ... */],
   Adamawa: ['Demsa', 'Fufore', 'Ganye', 'Girei', /* ... */],
-  // ...add the rest of the LGAs by state
+  // ...the rest of the LGAs by state
 };
 
 const wardsByLGA = {
@@ -19,7 +19,7 @@ const wardsByLGA = {
   'Aba South': ['Asa', 'Atani', 'Obuda'],
   'Umuahia North': ['Amaise', 'Mgboko', 'Ubakala'],
   'Umuahia South': ['Ahiaeke', 'Ubakala', 'Umuosi'],
-  // ...add the rest of the wards by LGA
+  // ...the rest of the wards by LGA
 };
 
 const Complaint = () => {
