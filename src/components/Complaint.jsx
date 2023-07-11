@@ -176,7 +176,7 @@ const Complaint = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" color="primary" className="complaint--button">
+              <Button type="submit" variant="contained" color="success" className="complaint--button">
                 Submit
               </Button>
             </Grid>
