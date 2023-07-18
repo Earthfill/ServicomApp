@@ -49,8 +49,8 @@ const Complaint = () => {
   return (
     <div className="complaint">
       <div className="complaint--agency">Ministry of Health</div>
-      <div className="complaint--header">
-        <div>Complaint form</div>
+      <div>
+        <div className="complaint--header">Complaint form</div>
         <form className="complaint--input">
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>

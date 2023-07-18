@@ -8,32 +8,145 @@ body {
   padding-bottom: 50px;
 }
 
-.header {
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  margin: 0;
+}
+
+.address {
+  text-decoration: none;
+}
+
+.footer {
   background-color: #288331;
   color: #fff;
   text-align: center;
   padding: 15px 0;
+  margin-top: 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
 }
 
-.complaint--agency {
-  font-size: 36px;
-  font-weight: 800;
-  margin-top: 50px;
+.filled {
+  color: #FFD700;
+}
+
+.empty {
+  color: rgba(71, 71, 71, 0.3);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  width: 90%;
+  background-color: rgba(71, 71, 71, 0.2);
+  margin-left: 5%;
+}
+
+.about {
+  font-size: 18px;
+  height: 100%;
+  width: 100%;
+  /* margin-top: 5%; */
+  flex: 1;
+}
+
+.about--agency {
+  text-align: center;
+  margin: 0;
+}
+
+.about--profile {
   text-align: center;
 }
 
-.complaint--header {
-  margin-top: 25px;
+.about--info {
   text-align: center;
-  font-size: 20px;
-  font-weight: 600;
 }
 
-.complaint--input {
-  text-align: center;
-  margin: 15px 10% 0px;
+.about--top--rating {
+  display: inline-block;
+  margin: 5px;
 }
 
-.complaint--button {
-  margin-bottom: 10px;
+.about--about, .modal--complaints {
+  margin: -10px 0 -10px 30px;
+}
+
+a {
+  color: #288331;
+  text-decoration: none;
+}
+
+.modal--complaints--button {
+  margin-top: -10px;
+}
+
+.modal--complaints--button button {
+  background-color: #288331;
+  color: #fff;
+  padding: 15px 15px; 
+  border-radius: 3px;
+  border: none;
+}
+
+.about--text--info {
+  margin: 15px 40px 20px 0;
+  font-size: 14px;
+}
+
+.about--details {
+  margin: 10px 10px -10px 30px;
+  font-size: 14px;
+}
+
+.fa-map-marker, .fa-phone, .fa-website {
+  display: inline-block;
+}
+
+.fa-map-marker {
+  color: red;
+}
+
+.fa-phone {
+  color: #00FF00;
+}   
+
+.address, .telephone, .website {
+  margin: -20px 40px 20px 25px;
+  text-decoration: none;
+}
+
+.modal {
+  font-size: 14px;
+}
+
+.modal p {
+  margin-top: 10px;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  margin: 10px 0;
+  width: 90%;
+  height: 25px;
+  outline: none;
+  display: block;
+  position: relative;
+}
+
+.form-textarea {
+  height: 100px;
+}
+
+form {
+  padding-bottom: 50px;
 }
