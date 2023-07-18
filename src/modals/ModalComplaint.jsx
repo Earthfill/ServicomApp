@@ -183,10 +183,9 @@ const ModalComplaint = () => {
                     </option>
                   ))}
               </select>
-              <button className="form-button">SUBMIT</button>
+              <button className="form-button" onSubmit={() => setIsOpen(!isOpen)}>SUBMIT</button>
             </form>
           </div>
-          <button className="modal--rating--close--button" onClick={closeModal}>&#10060;</button>
         </div>
       )}
     </div>

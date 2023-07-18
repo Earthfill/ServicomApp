@@ -105,15 +105,6 @@ a {
   border: none;
 }
 
-.modal--rating--close--button {
-  position: absolute;
-  top: 165px;
-  right: 30px;
-  background-color: #fff;
-  border: none;
-  padding: 5px;
-}
-
 .about--text--info {
   margin: 15px 40px 20px 0;
   font-size: 14px;
