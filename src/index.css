@@ -80,6 +80,14 @@ hr {
   margin: -10px 0 -10px 30px;
 }
 
+.modal {
+  margin-top: 40px;
+}
+
+.modal p {
+  text-align: center;
+}
+
 a {
   color: #288331;
   text-decoration: none;
@@ -95,6 +103,15 @@ a {
   padding: 15px 15px; 
   border-radius: 3px;
   border: none;
+}
+
+.modal--rating--close--button {
+  position: absolute;
+  top: 165px;
+  right: 30px;
+  background-color: #fff;
+  border: none;
+  padding: 5px;
 }
 
 .about--text--info {
@@ -132,11 +149,31 @@ a {
   margin-top: 10px;
 }
 
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .form-input,
 .form-textarea,
 .form-select {
   margin: 10px 0;
-  width: 90%;
+  width: 100%;
   height: 25px;
   outline: none;
   display: block;
@@ -148,5 +185,13 @@ a {
 }
 
 form {
-  padding-bottom: 50px;
+  padding-bottom: 100px;
+}
+
+.form-button {
+  border-radius: 5px;
+  border: none;
+  background-color: #288331;
+  color: #fff;
+  padding: 10px 135px;
 }
