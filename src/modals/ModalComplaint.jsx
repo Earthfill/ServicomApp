@@ -23,10 +23,11 @@ const wardsByLGA = {
 
 const ModalComplaint = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false);
   
-  const closeModal = () => {
-    setIsOpen(false);
-  }
+  // const closeModal = () => {
+  //   setIsOpen(false);
+  // }
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -79,6 +80,14 @@ const ModalComplaint = () => {
     setSelectedWard(event.target.value);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Perform any necessary form submission actions here
+
+    // For this example, we'll just display the "thank you" message and set isSubmitted to true
+    setIsSubmitted(true);
+  };
+
   return (
     <div className="modal--complaints">
       <h3>Complaints</h3>
@@ -88,103 +97,115 @@ const ModalComplaint = () => {
       {isOpen && (
         <div className="modal-container">
           <div className="modal">
-            <p>Complaint form</p>
-            <form className="complaint--input">
-              <input
-                className="form-input"
-                name="firstName"
-                value={firstName}
-                onChange={handleInputChange}
-                placeholder="First Name"
-              />
-              <input
-                className="form-input"
-                name="lastName"
-                value={lastName}
-                onChange={handleInputChange}
-                placeholder="Last Name"
-              />
-              <input
-                className="form-input"
-                type="tel"
-                name="phoneNumber"
-                value={phoneNumber}
-                onChange={handleInputChange}
-                placeholder="Phone Number"
-              />
-              <input
-                className="form-input"
-                type="date"
-                name="date"
-                value={date}
-                onChange={handleInputChange}
-                placeholder="Date"
-              />
-              <textarea
-                className="form-textarea"
-                name="complaint"
-                value={complaint}
-                onChange={handleInputChange}
-                placeholder="Complaint"
-              />
-              <select
-                className="form-select"
-                name="rating"
-                value={rating}
-                onChange={handleInputChange}
-              >
-                <option value="0">Select Rating</option>
-                <option value="1">1 Star</option>
-                <option value="2">2 Stars</option>
-                <option value="3">3 Stars</option>
-                <option value="4">4 Stars</option>
-                <option value="5">5 Stars</option>
-              </select>
-              <select
-                className="form-select"
-                name="state"
-                value={selectedState}
-                onChange={handleStateChange}
-              >
-                <option value="">Select State</option>
-                {states.map((state) => (
-                  <option key={state} value={state}>
-                    {state}
-                  </option>
-                ))}
-              </select>
-              <select
-                className="form-select"
-                name="lga"
-                value={selectedLGA}
-                onChange={handleLGAChange}
-                disabled={!selectedState}
-              >
-                <option value="">Select LGA</option>
-                {selectedState &&
-                  lgasByState[selectedState].map((lga) => (
-                    <option key={lga} value={lga}>
-                      {lga}
-                    </option>
-                  ))}
-              </select>
-              <select
-                className="form-select"
-                name="ward"
-                value={selectedWard}
-                onChange={handleWardChange}
-                disabled={!selectedLGA}
-              >
-                <option value="">Select Ward</option>
-                {selectedLGA &&
-                  wardsByLGA[selectedLGA].map((ward) => (
-                    <option key={ward} value={ward}>
-                      {ward}
-                    </option>
-                  ))}
-              </select>
-              <button className="form-button" onSubmit={() => setIsOpen(!isOpen)}>SUBMIT</button>
-            </form>
+            {isSubmitted ? (
+              // Show the "thank you" message and a green checkmark
+              <div className="submission-thank-you">
+                <span role="img" aria-label="Checkmark">
+                  &#9989;
+                </span>{" "}
+                Thank you for submitting!
+              </div>
+            ) : (
+              <>
+                <p>Complaint form</p>
+                <form className="complaint--input" onSubmit={handleSubmit}>
+                  <input
+                    className="form-input"
+                    name="firstName"
+                    value={firstName}
+                    onChange={handleInputChange}
+                    placeholder="First Name"
+                  />
+                  <input
+                    className="form-input"
+                    name="lastName"
+                    value={lastName}
+                    onChange={handleInputChange}
+                    placeholder="Last Name"
+                  />
+                  <input
+                    className="form-input"
+                    type="tel"
+                    name="phoneNumber"
+                    value={phoneNumber}
+                    onChange={handleInputChange}
+                    placeholder="Phone Number"
+                  />
+                  <input
+                    className="form-input"
+                    type="date"
+                    name="date"
+                    value={date}
+                    onChange={handleInputChange}
+                    placeholder="Date"
+                  />
+                  <textarea
+                    className="form-textarea"
+                    name="complaint"
+                    value={complaint}
+                    onChange={handleInputChange}
+                    placeholder="Complaint"
+                  />
+                  <select
+                    className="form-select"
+                    name="rating"
+                    value={rating}
+                    onChange={handleInputChange}
+                  >
+                    <option value="0">Select Rating</option>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                  </select>
+                  <select
+                    className="form-select"
+                    name="state"
+                    value={selectedState}
+                    onChange={handleStateChange}
+                  >
+                    <option value="">Select State</option>
+                    {states.map((state) => (
+                      <option key={state} value={state}>
+                        {state}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    className="form-select"
+                    name="lga"
+                    value={selectedLGA}
+                    onChange={handleLGAChange}
+                    disabled={!selectedState}
+                  >
+                    <option value="">Select LGA</option>
+                    {selectedState &&
+                      lgasByState[selectedState].map((lga) => (
+                        <option key={lga} value={lga}>
+                          {lga}
+                        </option>
+                      ))}
+                  </select>
+                  <select
+                    className="form-select"
+                    name="ward"
+                    value={selectedWard}
+                    onChange={handleWardChange}
+                    disabled={!selectedLGA}
+                  >
+                    <option value="">Select Ward</option>
+                    {selectedLGA &&
+                      wardsByLGA[selectedLGA].map((ward) => (
+                        <option key={ward} value={ward}>
+                          {ward}
+                        </option>
+                      ))}
+                  </select>
+                  <button className="form-button">SUBMIT</button>
+                </form>
+              </>
+            )}
           </div>
         </div>
       )}
