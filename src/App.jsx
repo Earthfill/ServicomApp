@@ -7,7 +7,7 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<About />} />
+          <Route path="/:uniqueGuid" element={<About />} />
         </Routes>
         <Footer />
       </BrowserRouter>

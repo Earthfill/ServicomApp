@@ -1,25 +1,23 @@
+import { CheckCircle } from "@mui/icons-material";
 import { useState } from "react"
 
 const states = [
-  'Abia',
-  'Adamawa',
-  'Akwa Ibom',
-  // ...the rest of the states
+  'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo', 
+  'Ekiti', 'Enugu', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa', 
+  'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara'
 ];
 
-const lgasByState = {
-  Abia: ['Aba North', 'Aba South', 'Umuahia North', 'Umuahia South', /* ... */],
-  Adamawa: ['Demsa', 'Fufore', 'Ganye', 'Girei', /* ... */],
-  // ...the rest of the LGAs by state
-};
+// const lgasByState = {
+//   Abia: ['Aba North', 'Aba South', 'Umuahia North', 'Umuahia South'],
+//   Adamawa: ['Demsa', 'Fufore', 'Ganye', 'Girei'],
+// };
  
-const wardsByLGA = {
-  'Aba North': ['Aba Central', 'Aba East', 'Aba North'],
-  'Aba South': ['Asa', 'Atani', 'Obuda'],
-  'Umuahia North': ['Amaise', 'Mgboko', 'Ubakala'],
-  'Umuahia South': ['Ahiaeke', 'Ubakala', 'Umuosi'],
-  // ...the rest of the wards by LGA
-};
+// const wardsByLGA = {
+//   'Aba North': ['Aba Central', 'Aba East', 'Aba North'],
+//   'Aba South': ['Asa', 'Atani', 'Obuda'],
+//   'Umuahia North': ['Amaise', 'Mgboko', 'Ubakala'],
+//   'Umuahia South': ['Ahiaeke', 'Ubakala', 'Umuosi'],
+// };
 
 const ModalComplaint = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,30 +27,22 @@ const ModalComplaint = () => {
   //   setIsOpen(false);
   // }
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [date, setDate] = useState('');
-  const [complaint, setComplaint] = useState('');
+  const [complaint, setComplain] = useState('');
   const [rating, setRating] = useState(0);
   const [selectedState, setSelectedState] = useState('');
-  const [selectedLGA, setSelectedLGA] = useState('');
-  const [selectedWard, setSelectedWard] = useState('');
+  // const [selectedLGA, setSelectedLGA] = useState('');
+  // const [selectedWard, setSelectedWard] = useState('');
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     switch (name) {
-      case 'firstName':
-        setFirstName(value);
-        break;
-      case 'lastName':
-        setLastName(value);
+      case 'name':
+        setName(value);
         break;
       case 'phoneNumber':
         setPhoneNumber(value);
-        break;
-      case 'date':
-        setDate(value);
         break;
       case 'complaint':
         setComplaint(value);
@@ -67,24 +57,23 @@ const ModalComplaint = () => {
 
   const handleStateChange = (event) => {
     setSelectedState(event.target.value);
-    setSelectedLGA('');
-    setSelectedWard('');
+    // setSelectedLGA('');
+    // setSelectedWard('');
   };
 
-  const handleLGAChange = (event) => {
-    setSelectedLGA(event.target.value);
-    setSelectedWard('');
-  };
+  // const handleLGAChange = (event) => {
+  //   setSelectedLGA(event.target.value);
+  //   setSelectedWard('');
+  // };
 
-  const handleWardChange = (event) => {
-    setSelectedWard(event.target.value);
-  };
+  // const handleWardChange = (event) => {
+  //   setSelectedWard(event.target.value);
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Perform any necessary form submission actions here
 
-    // For this example, we'll just display the "thank you" message and set isSubmitted to true
+
     setIsSubmitted(true);
   };
 
@@ -100,9 +89,7 @@ const ModalComplaint = () => {
             {isSubmitted ? (
               // Show the "thank you" message and a green checkmark
               <div className="submission-thank-you">
-                <span role="img" aria-label="Checkmark">
-                  &#9989;
-                </span>{" "}
+                <CheckCircle />
                 Thank you for submitting!
               </div>
             ) : (
@@ -111,17 +98,10 @@ const ModalComplaint = () => {
                 <form className="complaint--input" onSubmit={handleSubmit}>
                   <input
                     className="form-input"
-                    name="firstName"
-                    value={firstName}
+                    name="name"
+                    value={name}
                     onChange={handleInputChange}
-                    placeholder="First Name"
-                  />
-                  <input
-                    className="form-input"
-                    name="lastName"
-                    value={lastName}
-                    onChange={handleInputChange}
-                    placeholder="Last Name"
+                    placeholder="Name"
                   />
                   <input
                     className="form-input"
@@ -131,18 +111,10 @@ const ModalComplaint = () => {
                     onChange={handleInputChange}
                     placeholder="Phone Number"
                   />
-                  <input
-                    className="form-input"
-                    type="date"
-                    name="date"
-                    value={date}
-                    onChange={handleInputChange}
-                    placeholder="Date"
-                  />
                   <textarea
                     className="form-textarea"
                     name="complaint"
-                    value={complaint}
+                    value={comment}
                     onChange={handleInputChange}
                     placeholder="Complaint"
                   />
