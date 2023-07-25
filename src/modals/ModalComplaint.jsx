@@ -1,11 +1,11 @@
 import { CheckCircle } from "@mui/icons-material";
 import { useState } from "react"
 
-const states = [
-  'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo', 
-  'Ekiti', 'Enugu', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa', 
-  'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara', 'FCT (Abuja)'
-];
+// const states = [
+//   'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo', 
+//   'Ekiti', 'Enugu', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa', 
+//   'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara', 'FCT (Abuja)'
+// ];
 
 // const lgasByState = {
 //   Abia: ['Aba North', 'Aba South', 'Umuahia North', 'Umuahia South'],
@@ -131,7 +131,7 @@ const ModalComplaint = () => {
                     <option value="4">4 Stars</option>
                     <option value="5">5 Stars</option>
                   </select>
-                  <select
+                  {/* <select
                     className="form-select"
                     name="state"
                     value={selectedState}
@@ -143,7 +143,7 @@ const ModalComplaint = () => {
                         {state}
                       </option>
                     ))}
-                  </select>
+                  </select> */}
                   {/* <select
                     className="form-select"
                     name="lga"
