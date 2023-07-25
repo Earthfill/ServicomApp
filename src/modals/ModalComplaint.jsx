@@ -4,7 +4,7 @@ import { useState } from "react"
 const states = [
   'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo', 
   'Ekiti', 'Enugu', 'Gombe', 'Imo', 'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa', 
-  'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara'
+  'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba', 'Yobe', 'Zamfara',
 ];
 
 // const lgasByState = {
@@ -29,7 +29,7 @@ const ModalComplaint = () => {
 
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [complaint, setComplain] = useState('');
+  const [complaint, setComplaint] = useState('');
   const [rating, setRating] = useState(0);
   const [selectedState, setSelectedState] = useState('');
   // const [selectedLGA, setSelectedLGA] = useState('');
@@ -88,9 +88,9 @@ const ModalComplaint = () => {
           <div className="modal">
             {isSubmitted ? (
               // Show the "thank you" message and a green checkmark
-              <div className="submission-thank-you">
-                <CheckCircle />
-                Thank you for submitting!
+              <div className="submission--thank--you">
+                <CheckCircle style={{ color: 'green', fontSize: 48 }}/>
+                <div>Thank you for submitting!</div>
               </div>
             ) : (
               <>
@@ -114,7 +114,7 @@ const ModalComplaint = () => {
                   <textarea
                     className="form-textarea"
                     name="complaint"
-                    value={comment}
+                    value={complaint}
                     onChange={handleInputChange}
                     placeholder="Complaint"
                   />
@@ -144,7 +144,7 @@ const ModalComplaint = () => {
                       </option>
                     ))}
                   </select>
-                  <select
+                  {/* <select
                     className="form-select"
                     name="lga"
                     value={selectedLGA}
@@ -173,7 +173,7 @@ const ModalComplaint = () => {
                           {ward}
                         </option>
                       ))}
-                  </select>
+                  </select> */}
                   <button className="form-button">SUBMIT</button>
                 </form>
               </>

@@ -160,6 +160,10 @@ a {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.submission--thank--you {
+  text-align: center;
+}
+
 .form-input,
 .form-textarea,
 .form-select {
