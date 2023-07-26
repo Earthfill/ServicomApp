@@ -1,5 +1,6 @@
-import { CheckCircle } from "@mui/icons-material";
 import { useState } from "react"
+import servicomService from "../services/servicom";
+import { CheckCircle } from "@mui/icons-material";
 
 // const states = [
 //   'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo', 
@@ -19,9 +20,10 @@ import { useState } from "react"
 //   'Umuahia South': ['Ahiaeke', 'Ubakala', 'Umuosi'],
 // };
 
-const ModalComplaint = () => {
-  const [isOpen, setIsOpen] = useState(false)
+const ModalComment = ({ agencyId }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [complaint, setComplaint] = useState([]);
   
   // const closeModal = () => {
   //   setIsOpen(false);
@@ -29,9 +31,9 @@ const ModalComplaint = () => {
 
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [complaint, setComplaint] = useState('');
+  const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
-  const [selectedState, setSelectedState] = useState('');
+  // const [selectedState, setSelectedState] = useState('');
   // const [selectedLGA, setSelectedLGA] = useState('');
   // const [selectedWard, setSelectedWard] = useState('');
 
@@ -44,11 +46,11 @@ const ModalComplaint = () => {
       case 'phoneNumber':
         setPhoneNumber(value);
         break;
-      case 'complaint':
-        setComplaint(value);
+      case 'comment':
+        setComment(value);
         break;
       case 'rating':
-        setRating(parseInt(value));
+        setRating(parseInt(value, 10));
         break;
       default:
         break;
@@ -70,18 +72,41 @@ const ModalComplaint = () => {
   //   setSelectedWard(event.target.value);
   // };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const newObject = {
+      name: name,
+      phoneNumber: phoneNumber,
+      agencyId: agencyId,
+      comment: comment,
+      rating: rating
+    };
 
-    setIsSubmitted(true);
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    try {
+      const returnedComplaint = await servicomService.create(newObject, { headers });
+      setComplaint([...complaint, returnedComplaint]);
+
+      setName("");
+      setPhoneNumber("");
+      setComment("");
+      setRating();
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div className="modal--complaints">
-      <h3>Complaints</h3>
+      <h3>Comments</h3>
       <div className="modal--complaints--button">
-        <button onClick={() => setIsOpen(!isOpen)}>MAKE A COMPLAINT</button>
+        <button onClick={() => setIsOpen(!isOpen)}>MAKE A COMMENT</button>
       </div>
       {isOpen && (
         <div className="modal-container">
@@ -94,8 +119,8 @@ const ModalComplaint = () => {
               </div>
             ) : (
               <>
-                <p>Complaint form</p>
-                <form className="complaint--input" onSubmit={handleSubmit}>
+                <p>Comment form</p>
+                <form className="comment--input" onSubmit={handleSubmit}>
                   <input
                     className="form-input"
                     name="name"
@@ -113,10 +138,10 @@ const ModalComplaint = () => {
                   />
                   <textarea
                     className="form-textarea"
-                    name="complaint"
-                    value={complaint}
+                    name="comment"
+                    value={comment}
                     onChange={handleInputChange}
-                    placeholder="Complaint"
+                    placeholder="Comment"
                   />
                   <select
                     className="form-select"
@@ -124,7 +149,7 @@ const ModalComplaint = () => {
                     value={rating}
                     onChange={handleInputChange}
                   >
-                    <option value="0">Select Rating</option>
+                    <option value="0">Make Agency Rating</option>
                     <option value="1">1 Star</option>
                     <option value="2">2 Stars</option>
                     <option value="3">3 Stars</option>
@@ -174,7 +199,7 @@ const ModalComplaint = () => {
                         </option>
                       ))}
                   </select> */}
-                  <button className="form-button">SUBMIT</button>
+                  <button type="submit" className="form--button">SUBMIT</button>
                 </form>
               </>
             )}
@@ -185,4 +210,4 @@ const ModalComplaint = () => {
   )
 }
 
-export default ModalComplaint
+export default ModalComment

@@ -60,7 +60,7 @@ const About = () => {
           </div>
         </div>
         <hr />
-        <ModalComplaint />
+        <ModalComplaint agencyId={agency.id} />
       </div>
     </div>
   )

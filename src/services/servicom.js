@@ -1,12 +1,19 @@
 import axios from "axios";
 
-const ID_BASE_URL = 'https://e24e-197-210-71-239.ngrok-free.app/api/Agency/GetAgencyById'
+const BASE_URL = 'https://c843-102-91-54-241.ngrok-free.app';
+const ID_BASE_URL = `${BASE_URL}/api/Agency/GetAgencyById`;
+const COMPLAINT_URL = `${BASE_URL}/api/Complaint/CreateComplaint`;
 
 const getByGuid = async (uniqueGuid) => {
-  const response = await axios.get(`${ID_BASE_URL}/${uniqueGuid}`)
+  const response = await axios.get(`${ID_BASE_URL}/${uniqueGuid}`);
   console.log(response);
-  return response
-
+  return response;
 }
 
-export default { getByGuid }
+const create = async newObject => {
+  const response = await axios.post(COMPLAINT_URL, newObject);
+  console.log(response);
+  return response.data;
+}
+
+export default { getByGuid, create }
