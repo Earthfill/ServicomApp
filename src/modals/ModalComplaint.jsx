@@ -61,11 +61,11 @@ const ModalComment = ({ agencyId }) => {
     }
   };
 
-  const handleStateChange = (event) => {
-    setSelectedState(event.target.value);
+  // const handleStateChange = (event) => {
+  //   setSelectedState(event.target.value);
     // setSelectedLGA('');
     // setSelectedWard('');
-  };
+  // };
 
   // const handleLGAChange = (event) => {
   //   setSelectedLGA(event.target.value);
@@ -107,7 +107,7 @@ const ModalComment = ({ agencyId }) => {
       console.error(error);
     }
   };
-
+  
   return (
     <div className="modal--complaints">
       <h3>Comments</h3>
@@ -224,4 +224,4 @@ const ModalComment = ({ agencyId }) => {
   )
 }
 
-export default ModalComment
+export default ModalComment;
