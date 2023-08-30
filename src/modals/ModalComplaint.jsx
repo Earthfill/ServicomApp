@@ -76,6 +76,12 @@ const ModalComment = ({ agencyId }) => {
   //   setSelectedWard(event.target.value);
   // };
 
+  const autoCloseSubmissionMessage = () => {
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 5000);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -103,9 +109,21 @@ const ModalComment = ({ agencyId }) => {
       setComment("");
       setRating();
       setIsSubmitted(true);
+
+      autoCloseSubmissionMessage();
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setIsSubmitted(false);
+    setName("");
+    setPhoneNumber("");
+    setEmail("");
+    setComment("");
+    setRating(0);
   };
   
   return (
@@ -215,6 +233,9 @@ const ModalComment = ({ agencyId }) => {
                   </select> */}
                   <button type="submit" className="form--button">SUBMIT</button>
                 </form>
+                <div className="form--close">
+                  <button className="form--close--button" onClick={closeModal}>Close</button>
+                </div>
               </>
             )}
           </div>

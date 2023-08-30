@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const BASE_URL = 'https://c843-102-91-54-241.ngrok-free.app'; // host.local.internal
-const ID_BASE_URL = `${BASE_URL}/api/Agency/GetAgencyById`;
-const COMPLAINT_URL = `${BASE_URL}/api/Complaint/CreateComplaint`;
+const BASE_URL = 'https://ea19-197-210-52-14.ngrok-free.app'; // host.local.internal
+const ID_BASE_URL = `${BASE_URL}/api/v1/Agency/getAgencyByGuid?uniqueGuid=`;
+const COMPLAINT_URL = `${BASE_URL}/api/v1/Complaint`;
 
 const getByGuid = async (uniqueGuid) => {
-  const response = await axios.get(`${ID_BASE_URL}/${uniqueGuid}`);
+  const response = await axios.get(`${ID_BASE_URL}${uniqueGuid}`);
   console.log(response);
-  return response;
+  return response.data;
 }
 
 const create = async newObject => {
