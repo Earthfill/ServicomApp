@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url('/public/servicom.png');
+  background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url('/servicom.png');
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
