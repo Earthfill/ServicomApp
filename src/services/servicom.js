@@ -16,4 +16,7 @@ const create = async newObject => {
   return response.data;
 }
 
-export default { getByGuid, create }
+export default { 
+  getByGuid, 
+  create 
+}
