@@ -1,6 +1,6 @@
 import { useState } from "react"
 import servicomService from "../services/servicom";
-import { CheckCircle } from "@mui/icons-material";
+import { CheckCircle, Star, StarBorder } from "@mui/icons-material";
 
 // const states = [
 //   'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo', 
@@ -34,6 +34,7 @@ const ModalComment = ({ agencyId }) => {
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
+  const [selectedRating, setSelectedRating] = useState(0);
   // const [selectedState, setSelectedState] = useState('');
   // const [selectedLGA, setSelectedLGA] = useState('');
   // const [selectedWard, setSelectedWard] = useState('');
@@ -82,6 +83,11 @@ const ModalComment = ({ agencyId }) => {
     }, 5000);
   };
 
+
+  const handleRatingClick = (rating) => {
+    setSelectedRating(rating);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -111,6 +117,7 @@ const ModalComment = ({ agencyId }) => {
       setIsSubmitted(true);
 
       autoCloseSubmissionMessage();
+      isOpen(false);
     } catch (error) {
       console.error(error);
     }
@@ -175,19 +182,18 @@ const ModalComment = ({ agencyId }) => {
                     onChange={handleInputChange}
                     placeholder="Comment"
                   />
-                  <select
-                    className="form-select"
-                    name="rating"
-                    value={rating}
-                    onChange={handleInputChange}
-                  >
-                    <option value="0">Make Agency Rating</option>
-                    <option value="1">1 Star</option>
-                    <option value="2">2 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="4">4 Stars</option>
-                    <option value="5">5 Stars</option>
-                  </select>
+                  <div className="rating">
+                    <span className="rating-label">Rating:</span>
+                    {[1, 2, 3, 4, 5].map((rating) => (
+                      <span
+                        key={rating}
+                        className={`star ${rating <= selectedRating ? 'filled' : 'empty'}`}
+                        onClick={() => handleRatingClick(rating)}
+                      >
+                        {rating <= selectedRating ? <Star /> : <StarBorder />}
+                      </span>
+                    ))}
+                  </div>
                   {/* <select
                     className="form-select"
                     name="state"

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'https://8def-197-210-53-128.ngrok-free.app'; // host.local.internal
+const BASE_URL = 'https://e249-197-210-70-37.ngrok-free.app'; // host.local.internal
 const ID_BASE_URL = `${BASE_URL}/api/v1/Agency/getAgencyByGuid?uniqueGuid=`;
 const COMPLAINT_URL = `${BASE_URL}/api/v1/Complaint`;
 
