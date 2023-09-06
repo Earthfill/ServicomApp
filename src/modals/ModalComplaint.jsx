@@ -33,7 +33,6 @@ const ModalComment = ({ agencyId }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState('');
-  const [rating, setRating] = useState(0);
   const [selectedRating, setSelectedRating] = useState(0);
   // const [selectedState, setSelectedState] = useState('');
   // const [selectedLGA, setSelectedLGA] = useState('');
@@ -53,9 +52,6 @@ const ModalComment = ({ agencyId }) => {
         break;
       case 'comment':
         setComment(value);
-        break;
-      case 'rating':
-        setRating(parseInt(value, 10));
         break;
       default:
         break;
@@ -97,7 +93,7 @@ const ModalComment = ({ agencyId }) => {
       email: email,
       agencyId: agencyId,
       comment: comment,
-      rating: rating
+      rating: selectedRating
     };
 
     const headers = {
@@ -113,7 +109,7 @@ const ModalComment = ({ agencyId }) => {
       setPhoneNumber("");
       setEmail("");
       setComment("");
-      setRating();
+      setSelectedRating();
       setIsSubmitted(true);
 
       autoCloseSubmissionMessage();
@@ -130,14 +126,14 @@ const ModalComment = ({ agencyId }) => {
     setPhoneNumber("");
     setEmail("");
     setComment("");
-    setRating(0);
+    setSelectedRating(0);
   };
   
   return (
     <div className="modal--complaints">
-      <h3>Comments</h3>
+      <h3>Feedbacks</h3>
       <div className="modal--complaints--button">
-        <button onClick={() => setIsOpen(!isOpen)}>MAKE A COMMENT</button>
+        <button onClick={() => setIsOpen(!isOpen)}>POST A FEEDBACK</button>
       </div>
       {isOpen && (
         <div className="modal-container">
@@ -149,7 +145,7 @@ const ModalComment = ({ agencyId }) => {
                 <div>Thank you for submitting!</div>
               </div>
             ) : (
-              <>
+              <div className="form--label">
                 <p>Comment form</p>
                 <form className="comment--input" onSubmit={handleSubmit}>
                   <input
@@ -180,7 +176,7 @@ const ModalComment = ({ agencyId }) => {
                     name="comment"
                     value={comment}
                     onChange={handleInputChange}
-                    placeholder="Comment"
+                    placeholder="Feedback"
                   />
                   <div className="rating">
                     <span className="rating-label">Rating:</span>
@@ -240,9 +236,9 @@ const ModalComment = ({ agencyId }) => {
                   <button type="submit" className="form--button">SUBMIT</button>
                 </form>
                 <div className="form--close">
-                  <button className="form--close--button" onClick={closeModal}>Close</button>
+                  <button className="form--close--button" onClick={closeModal}>&#10005;</button>
                 </div>
-              </>
+              </div>
             )}
           </div>
         </div>

@@ -196,7 +196,7 @@ a {
 }
 
 form {
-  padding-bottom: 100px;
+  padding-bottom: 50px;
 }
 
 .form--button {
@@ -212,7 +212,15 @@ form {
   text-align: center;
 }
 
+.form--label {
+  position: relative;
+  margin: 0;
+}
+
 .form--close--button {
+  position: absolute;
+  top: -30px;
+  right: -20px;
   color: #fff;
   background-color: rgb(220, 0, 0);
   border: none;
