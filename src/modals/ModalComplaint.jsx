@@ -1,6 +1,7 @@
 import { useState } from "react"
 import servicomService from "../services/servicom";
 import { CheckCircle, Star, StarBorder } from "@mui/icons-material";
+import { Chip } from "@mui/material";
 
 // const states = [
 //   'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno', 'Cross River', 'Delta', 'Ebonyi', 'Edo', 
@@ -171,13 +172,26 @@ const ModalComment = ({ agencyId }) => {
                     onChange={handleInputChange}
                     placeholder="Email Address"
                   />
-                  <textarea
-                    className="form-textarea"
-                    name="comment"
-                    value={comment}
-                    onChange={handleInputChange}
-                    placeholder="Feedback"
-                  />
+                  <div>
+                    <button className='modal--form--header'>Select Report Tag</button>
+                    <Chip 
+                      // label={tag.name}
+                      clickable
+                      // onClick={() => handleCheckboxChange(tag.id)}
+                      className='reportedTagId'
+                      style={{ backgroundColor: '#45b6fe', color: '#ffffff' }}
+                    />
+                  </div>
+                  <div>
+                    <button className='modal--form--header'>Type feedback</button>
+                    <textarea
+                      className="form-textarea"
+                      name="comment"
+                      value={comment}
+                      onChange={handleInputChange}
+                      placeholder="Feedback"
+                    />
+                  </div>
                   <div className="rating">
                     <span className="rating-label">Rating:</span>
                     {[1, 2, 3, 4, 5].map((rating) => (
