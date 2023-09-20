@@ -228,6 +228,13 @@ a {
   color: #000;
 }
 
+.modal--form--header {
+  border: none;
+  background-color: white;
+  color: #288331;
+  padding-top: 5px;
+}
+
 .form-textarea {
   height: 100px;
 }

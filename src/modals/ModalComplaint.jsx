@@ -39,6 +39,33 @@ const ModalComment = ({ agencyId }) => {
   // const [selectedLGA, setSelectedLGA] = useState('');
   // const [selectedWard, setSelectedWard] = useState('');
 
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [showTags, setShowTags] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const dummyTags = [
+    "Long wait time",
+    "Rude staff",
+    "Availability",
+    "Delay",
+    "Bribery",
+  ];
+
+  const handleTagClick = (tag) => {
+    if (selectedTags.includes(tag)) {
+      setSelectedTags(selectedTags.filter((selectedTag) => selectedTag !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
+
+  const toggleTagsVisibility = () => {
+    setShowTags(!showTags);
+  };
+
+  const toggleFeedbacksVisibility = () => {
+    setShowFeedback(!showFeedback);
+  };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     switch (name) {
@@ -173,24 +200,56 @@ const ModalComment = ({ agencyId }) => {
                     placeholder="Email Address"
                   />
                   <div>
-                    <button className='modal--form--header'>Select Report Tag</button>
-                    <Chip 
-                      // label={tag.name}
-                      clickable
-                      // onClick={() => handleCheckboxChange(tag.id)}
-                      className='reportedTagId'
-                      style={{ backgroundColor: '#45b6fe', color: '#ffffff' }}
-                    />
+                    <button 
+                      className='modal--form--header'
+                      onClick={toggleTagsVisibility}  
+                    >
+                      Select Report Tag
+                    </button>
+                    {showTags && (
+                      <div className="tag-chips">
+                        {dummyTags.map((tag) => (
+                          <Chip
+                            key={tag}
+                            label={tag}
+                            clickable
+                            onClick={() => handleTagClick(tag)}
+                            className={`reportedTagId ${
+                              selectedTags.includes(tag) ? "selected" : ""
+                            }`}
+                            style={{
+                              backgroundColor: selectedTags.includes(tag)
+                                ? "lightgreen"
+                                : "white",
+                              color: selectedTags.includes(tag)
+                                ? "green"
+                                : "black",
+                              margin: "5px",
+                              border: selectedTags.includes(tag)
+                                ? "1px solid green"
+                                : "1px solid black",
+                            }}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <div>
-                    <button className='modal--form--header'>Type feedback</button>
-                    <textarea
-                      className="form-textarea"
-                      name="comment"
-                      value={comment}
-                      onChange={handleInputChange}
-                      placeholder="Feedback"
-                    />
+                    <button 
+                      className='modal--form--header'
+                      onClick={toggleFeedbacksVisibility}
+                    >
+                      Type feedback
+                    </button>
+                    {showFeedback && (
+                      <textarea
+                        className="form-textarea"
+                        name="comment"
+                        value={comment}
+                        onChange={handleInputChange}
+                        placeholder="Feedback"
+                      />
+                    )}
                   </div>
                   <div className="rating">
                     <span className="rating-label">Rating:</span>
