@@ -101,15 +101,15 @@ hr {
 }
 
 .stamp--unlicensed {
-  color: #D23;
-  border: 3px double #D23;
+  color: darkblue;
+  border: 3px double darkblue;
   transform: rotate(-10deg);
 	-webkit-mask-position: 2rem 3rem;
   border-radius: 10%;
   font-size: 15px;
   padding: 5px;
   margin-left: 20px;
-  margin-right: -105px;
+  margin-right: -35px;
   display: flex;
 }
 
