@@ -34,15 +34,15 @@ const About = () => {
         <div className="about--profile">
           <img src={agency.logoUrl} alt="" className="about--image" />
           <div className="verification--icon">
-            {/* {!item.licenseExpired && ( */}
+            {!agency.isHeadquarters && (
               <span className="stamp--licensed">Headquarters</span>
-            {/* )} */}
-            {/* {item.licenseExpired && ( */}
-              {/* <span className="stamp--unlicensed">Outlet</span> */}
-            {/* )} */}
+            )}
+            {agency.isHeadquarters && (
+              <span className="stamp--unlicensed">Outlet</span>
+            )}
           </div>
         </div>
-        <h4 className="about--agency"><div>{agency.name}</div> <div>[{agency.state}]</div></h4>
+        <h4 className="about--agency"><div>{agency.name}</div> {agency.outlet === null && <div>[{agency.state}]</div>}</h4>
         <div className='about--info'>
          <span className='about--top--rating'><RatedStar rating={agency.rating}/></span>
          <span className='about--top--rating'>{agency.rating  > 1.0 ? agency.rating.toFixed(1) : '0.0'}</span>

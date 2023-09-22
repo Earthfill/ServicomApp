@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import servicomService from "../services/servicom";
 import { CheckCircle, Star, StarBorder } from "@mui/icons-material";
 import { Chip } from "@mui/material";
@@ -25,6 +25,7 @@ const ModalComment = ({ agencyId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [complaint, setComplaint] = useState([]);
+  const [availableTags, setAvailableTags] = useState([]);
   
   // const closeModal = () => {
   //   setIsOpen(false);
@@ -33,7 +34,7 @@ const ModalComment = ({ agencyId }) => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState("");
-  const [comment, setComment] = useState('');
+  const [body, setBody] = useState('');
   const [selectedRating, setSelectedRating] = useState(0);
   // const [selectedState, setSelectedState] = useState('');
   // const [selectedLGA, setSelectedLGA] = useState('');
@@ -42,13 +43,6 @@ const ModalComment = ({ agencyId }) => {
   const [selectedTags, setSelectedTags] = useState([]);
   const [showTags, setShowTags] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
-  const dummyTags = [
-    "Long wait time",
-    "Rude staff",
-    "Availability",
-    "Delay",
-    "Bribery",
-  ];
 
   const handleTagClick = (tag) => {
     if (selectedTags.includes(tag)) {
@@ -78,8 +72,8 @@ const ModalComment = ({ agencyId }) => {
       case 'email':
         setEmail(value);
         break;
-      case 'comment':
-        setComment(value);
+      case 'body':
+        setBody(value);
         break;
       default:
         break;
@@ -101,16 +95,33 @@ const ModalComment = ({ agencyId }) => {
   //   setSelectedWard(event.target.value);
   // };
 
-  const autoCloseSubmissionMessage = () => {
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 5000);
-  };
+  // const autoCloseSubmissionMessage = () => {
+  //   setTimeout(() => {
+  //     setIsSubmitted(false);
+  //   }, 5000);
+  // };
 
 
   const handleRatingClick = (rating) => {
     setSelectedRating(rating);
   };
+
+  useEffect(() => {
+    async function fetchTags() {
+      try {
+        const response = await servicomService.getTags();
+        if (response.isSuccessful) {
+          setAvailableTags(response.data);
+        } else {
+          console.error("Failed to fetch tags");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchTags();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -120,8 +131,9 @@ const ModalComment = ({ agencyId }) => {
       phoneNumber: phoneNumber,
       email: email,
       agencyId: agencyId,
-      comment: comment,
-      rating: selectedRating
+      body: body,
+      rating: selectedRating,
+      tagIds: selectedTags.map((tag) => tag.id),
     };
 
     const headers = {
@@ -136,12 +148,16 @@ const ModalComment = ({ agencyId }) => {
       setName("");
       setPhoneNumber("");
       setEmail("");
-      setComment("");
+      setBody("");
       setSelectedRating();
+      setSelectedTags([]);
       setIsSubmitted(true);
 
-      autoCloseSubmissionMessage();
-      isOpen(false);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setIsOpen(false);
+      }, 5000);
+      
     } catch (error) {
       console.error(error);
     }
@@ -153,7 +169,7 @@ const ModalComment = ({ agencyId }) => {
     setName("");
     setPhoneNumber("");
     setEmail("");
-    setComment("");
+    setBody("");
     setSelectedRating(0);
   };
   
@@ -175,10 +191,11 @@ const ModalComment = ({ agencyId }) => {
             ) : (
               <div className="form--label">
                 <p>Comment form</p>
-                <form className="comment--input" onSubmit={handleSubmit}>
+                <form className="body--input" onSubmit={handleSubmit}>
                   <input
                     className="form-input"
                     name="name"
+                    required
                     value={name}
                     onChange={handleInputChange}
                     placeholder="Full Name"
@@ -186,6 +203,7 @@ const ModalComment = ({ agencyId }) => {
                   <input
                     className="form-input"
                     type="tel"
+                    required
                     name="phoneNumber"
                     value={phoneNumber}
                     onChange={handleInputChange}
@@ -194,6 +212,7 @@ const ModalComment = ({ agencyId }) => {
                   <input
                     className="form-input"
                     type="email"
+                    required
                     name="email"
                     value={email}
                     onChange={handleInputChange}
@@ -208,14 +227,16 @@ const ModalComment = ({ agencyId }) => {
                     </button>
                     {showTags && (
                       <div className="tag-chips">
-                        {dummyTags.map((tag) => (
+                        {availableTags.map((tag) => (
                           <Chip
-                            key={tag}
-                            label={tag}
+                            key={tag.id}
+                            label={tag.name}
                             clickable
                             onClick={() => handleTagClick(tag)}
                             className={`reportedTagId ${
-                              selectedTags.includes(tag) ? "selected" : ""
+                              selectedTags.some((selectedTag) => selectedTag.id === tag.id)
+                              ? "selected"
+                              : ""
                             }`}
                             style={{
                               backgroundColor: selectedTags.includes(tag)
@@ -244,8 +265,8 @@ const ModalComment = ({ agencyId }) => {
                     {showFeedback && (
                       <textarea
                         className="form-textarea"
-                        name="comment"
-                        value={comment}
+                        name="body"
+                        value={body}
                         onChange={handleInputChange}
                         placeholder="Feedback"
                       />
