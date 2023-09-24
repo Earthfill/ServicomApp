@@ -21,7 +21,7 @@ import { Chip } from "@mui/material";
 //   'Umuahia South': ['Ahiaeke', 'Ubakala', 'Umuosi'],
 // };
 
-const ModalComment = ({ agencyId }) => {
+const ModalComment = ({ agencyId, agencyName }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [complaint, setComplaint] = useState([]);
@@ -41,23 +41,13 @@ const ModalComment = ({ agencyId }) => {
   // const [selectedWard, setSelectedWard] = useState('');
 
   const [selectedTags, setSelectedTags] = useState([]);
-  const [showTags, setShowTags] = useState(false);
-  const [showFeedback, setShowFeedback] = useState(false);
-
+  
   const handleTagClick = (tag) => {
     if (selectedTags.includes(tag)) {
       setSelectedTags(selectedTags.filter((selectedTag) => selectedTag !== tag));
     } else {
       setSelectedTags([...selectedTags, tag]);
     }
-  };
-
-  const toggleTagsVisibility = () => {
-    setShowTags(!showTags);
-  };
-
-  const toggleFeedbacksVisibility = () => {
-    setShowFeedback(!showFeedback);
   };
 
   const handleInputChange = (event) => {
@@ -190,8 +180,51 @@ const ModalComment = ({ agencyId }) => {
               </div>
             ) : (
               <div className="form--label">
-                <p>Comment form</p>
+                <p className="form--title">Feedback form</p>
                 <form className="body--input" onSubmit={handleSubmit}>
+                  <div className="rating--label">Rate your experience</div>
+                  <div className="star">
+                    {[1, 2, 3, 4, 5].map((rating) => (
+                      <div
+                      key={rating}
+                        className={`${rating <= selectedRating ? 'filled' : 'empty'}`}
+                        onClick={() => handleRatingClick(rating)}
+                        >
+                        {rating <= selectedRating ? <Star /> : <StarBorder />}
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <div className='modal--form--header'>Add Tags (optional)</div>
+                    <div className="tag-chips">
+                      {availableTags.map((tag) => (
+                        <Chip
+                          key={tag.id}
+                          label={tag.name}
+                          clickable
+                          onClick={() => handleTagClick(tag)}
+                          className={`reportedTagId ${
+                            selectedTags.some((selectedTag) => selectedTag.id === tag.id)
+                            ? "selected"
+                            : ""
+                          }`}
+                          style={{
+                            backgroundColor: selectedTags.includes(tag)
+                              ? "lightgreen"
+                              : "white",
+                            color: selectedTags.includes(tag)
+                              ? "green"
+                              : "black",
+                            margin: "5px",
+                            border: selectedTags.includes(tag)
+                              ? "1px solid green"
+                              : "1px solid black",
+                            borderRadius: "10px"
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
                   <input
                     className="form-input"
                     name="name"
@@ -219,70 +252,14 @@ const ModalComment = ({ agencyId }) => {
                     placeholder="Email Address"
                   />
                   <div>
-                    <button 
-                      className='modal--form--header'
-                      onClick={toggleTagsVisibility}  
-                    >
-                      Select Report Tag
-                    </button>
-                    {showTags && (
-                      <div className="tag-chips">
-                        {availableTags.map((tag) => (
-                          <Chip
-                            key={tag.id}
-                            label={tag.name}
-                            clickable
-                            onClick={() => handleTagClick(tag)}
-                            className={`reportedTagId ${
-                              selectedTags.some((selectedTag) => selectedTag.id === tag.id)
-                              ? "selected"
-                              : ""
-                            }`}
-                            style={{
-                              backgroundColor: selectedTags.includes(tag)
-                                ? "lightgreen"
-                                : "white",
-                              color: selectedTags.includes(tag)
-                                ? "green"
-                                : "black",
-                              margin: "5px",
-                              border: selectedTags.includes(tag)
-                                ? "1px solid green"
-                                : "1px solid black",
-                            }}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <button 
-                      className='modal--form--header'
-                      onClick={toggleFeedbacksVisibility}
-                    >
-                      Type feedback
-                    </button>
-                    {showFeedback && (
-                      <textarea
-                        className="form-textarea"
-                        name="body"
-                        value={body}
-                        onChange={handleInputChange}
-                        placeholder="Feedback"
-                      />
-                    )}
-                  </div>
-                  <div className="rating">
-                    <span className="rating-label">Rating:</span>
-                    {[1, 2, 3, 4, 5].map((rating) => (
-                      <span
-                        key={rating}
-                        className={`star ${rating <= selectedRating ? 'filled' : 'empty'}`}
-                        onClick={() => handleRatingClick(rating)}
-                      >
-                        {rating <= selectedRating ? <Star /> : <StarBorder />}
-                      </span>
-                    ))}
+                    <textarea
+                      type="text"
+                      className="form-textarea"
+                      name="body"
+                      value={body}
+                      onChange={handleInputChange}
+                      placeholder={`Type details of your experience at ${agencyName}`}
+                    />
                   </div>
                   {/* <select
                     className="form-select"
@@ -327,7 +304,7 @@ const ModalComment = ({ agencyId }) => {
                         </option>
                       ))}
                   </select> */}
-                  <button type="submit" className="form--button">SUBMIT</button>
+                  <button type="submit" className="form--button">SEND</button>
                 </form>
                 <div className="form--close">
                   <button className="form--close--button" onClick={closeModal}>&#10005;</button>

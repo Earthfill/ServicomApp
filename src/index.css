@@ -34,8 +34,12 @@ p {
   font-size: 14px;
 }
 
+.star {
+  display: flex;
+}
+
 .filled {
-  color: #FFD700;
+  color: #E67136;
 }
 
 .empty {
@@ -80,37 +84,8 @@ hr {
 
 .verification--icon {
   display: inline-block;
-  position: relative;
   width: 35%;
   height: 20px;
-  margin-left: -40px;
-  margin-top: -85px;
-}
-
-.stamp--licensed {
-	color: #0A9928;
-	border: 3px double #0A9928;
-	-webkit-mask-position: 2rem 3rem;
-	transform: rotate(-10deg);
-  border-radius: 10%;
-  font-size: 15px;
-  padding: 5px;
-  margin-left: 20px;
-  margin-right: -85px;
-  display: flex;
-}
-
-.stamp--unlicensed {
-  color: darkblue;
-  border: 3px double darkblue;
-  transform: rotate(-10deg);
-	-webkit-mask-position: 2rem 3rem;
-  border-radius: 10%;
-  font-size: 15px;
-  padding: 5px;
-  margin-left: 20px;
-  margin-right: -35px;
-  display: flex;
 }
 
 .about--info {
@@ -119,7 +94,7 @@ hr {
 
 .about--top--rating {
   display: inline-block;
-  margin: 5px;
+  margin-left: 5px;
 }
 
 .about--about, .modal--complaints {
@@ -229,10 +204,12 @@ a {
 }
 
 .modal--form--header {
-  border: none;
-  background-color: white;
-  color: #288331;
-  padding-top: 5px;
+  padding-top: 20px;
+  font-size: medium;
+}
+
+.tag-chips {
+  margin: 0 0 20px -5px;
 }
 
 .form-textarea {
@@ -259,6 +236,20 @@ form {
 .form--label {
   position: relative;
   margin: 0;
+}
+
+.form--title {
+  margin-bottom: 20px;
+  font-size: large;
+}
+
+.rating--label {
+  font-size: medium;
+  margin-bottom: 5px;
+}
+
+.rating--rating {
+  display: flex;
 }
 
 .form--close--button {
