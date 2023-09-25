@@ -6,7 +6,7 @@ import Address from "../links/Address"
 import PhoneNumber from "../links/PhoneNumber"
 import Website from "../links/Website"
 import { Language, LocationOn, Phone, Star, StarBorder } from "@mui/icons-material"
-import { Link, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const About = () => {
   const [agency, setAgency] = useState([]);
@@ -14,6 +14,8 @@ const About = () => {
   const params = useParams();
   const {uniqueGuid} = params;
   const [selectedRating, setSelectedRating] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +32,15 @@ const About = () => {
 
   const handleRatingClick = (rating) => {
     setSelectedRating(rating);
+  };
+
+  const handleFeedbackClick = () => {
+    navigate(`/feedback/${agency.uniqueGuid}`, {
+      state: {
+        agencyName: agency.name,
+        agencyId: agency.id
+      },
+    });
   };
 
   return (
@@ -69,14 +80,16 @@ const About = () => {
           <h3>Rate and Review</h3>
           <div className="about--star">
             {[1, 2, 3, 4, 5].map((rating) => (
-              <Link
-                to={`/feedback/${agency.id}`}
+              <div
                 key={rating}
                 className={`${rating <= selectedRating ? 'filled' : 'empty'}`}
-                onClick={() => handleRatingClick(rating)}
-                >
+                onClick={() => {
+                  handleRatingClick(rating)
+                  handleFeedbackClick()
+                }}
+              >
                 {rating <= selectedRating ? <Star /> : <StarBorder />}
-              </Link>
+              </div>
             ))}
           </div>
         </div>

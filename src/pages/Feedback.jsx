@@ -2,10 +2,12 @@ import { useEffect, useState } from "react"
 import servicomService from "../services/servicom";
 import { ArrowBack, CheckCircle, Star, StarBorder } from "@mui/icons-material";
 import { Chip } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
-const Feedback = ({ agencyId, agencyName }) => {
+const Feedback = () => {
+  const location = useLocation();
+  const { state } = location;
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [complaint, setComplaint] = useState([]);
@@ -77,7 +79,7 @@ const Feedback = ({ agencyId, agencyName }) => {
       name: name,
       phoneNumber: phoneNumber,
       email: email,
-      agencyId: agencyId,
+      agencyId: state.agencyId,
       body: body,
       rating: selectedRating,
       tagIds: selectedTags.map((tag) => tag.id),
@@ -103,7 +105,7 @@ const Feedback = ({ agencyId, agencyName }) => {
       setTimeout(() => {
         setIsSubmitted(false);
         setIsOpen(false);
-      }, 5000);
+      }, 3000);
       
     } catch (error) {
       console.error(error);
@@ -115,7 +117,7 @@ const Feedback = ({ agencyId, agencyName }) => {
       <div className="modal">
         {isSubmitted ? (
           <div className="submission--thank--you">
-            <CheckCircle style={{ color: 'green', fontSize: 48 }}/>
+            <CheckCircle style={{ color: 'white', fontSize: 48 }}/>
             <div>Thank you for submitting!</div>
           </div>
         ) : (
@@ -203,7 +205,7 @@ const Feedback = ({ agencyId, agencyName }) => {
                   name="body"
                   value={body}
                   onChange={handleInputChange}
-                  placeholder={`Type details of your experience at ${agencyName}`}
+                  placeholder={`Type details of your experience at ${state.agencyName}`}
                 />
               </div>
               {/* <select
