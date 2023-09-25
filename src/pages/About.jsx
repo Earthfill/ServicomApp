@@ -67,7 +67,7 @@ const About = () => {
         <hr />
         <div className="">
           <h3>Rate and Review</h3>
-          <div className="star">
+          <div className="about--star">
             {[1, 2, 3, 4, 5].map((rating) => (
               <Link
                 to={`/feedback/${agency.id}`}
