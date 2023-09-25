@@ -132,10 +132,10 @@ const Feedback = () => {
                 {[1, 2, 3, 4, 5].map((rating) => (
                   <div
                   key={rating}
-                    className={`${rating <= selectedRating ? 'filled' : 'empty'}`}
+                    className={`${rating <= selectedRating ? 'fill' : 'blank'}`}
                     onClick={() => handleRatingClick(rating)}
                     >
-                    {rating <= selectedRating ? <Star className="star--star"/> : <StarBorder />}
+                    {rating <= selectedRating ? <Star style={{ fontSize: '48px' }} /> : <StarBorder style={{ fontSize: '48px' }} />}
                   </div>
                 ))}
               </div>
