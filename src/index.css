@@ -17,10 +17,6 @@ p {
   margin: 0;
 }
 
-.address {
-  text-decoration: none;
-}
-
 .footer {
   background-color: #288331;
   color: #fff;
@@ -36,6 +32,8 @@ p {
 
 .star {
   display: flex;
+  justify-content: left;
+  font-size: 36px;
 }
 
 .filled {
@@ -54,24 +52,30 @@ hr {
   margin-left: 5%;
 }
 
+.feedback--line {
+  border: none;
+  height: 1px;
+  width: 100%;
+  background-color: rgba(71, 71, 71, 0.2);
+  margin: 5% 0 3%;
+}
+
 .about {
   font-size: 18px;
   height: 100%;
   width: 100%;
   flex: 1;
   padding: 5px 0;
-}
-
-.about--agency {
   text-align: center;
-  margin: 0;
-  padding: 5px 25px 0;
+  color: #474747;
 }
 
 .about--profile {
-  display: flex;
-  align-items: center;
-  margin: 15px 34% auto;
+  padding-top: 10px;
+}
+
+.about--agency {
+  margin: 20px 60px 10px;
 }
 
 .about--image {
@@ -93,18 +97,12 @@ hr {
 .about--top--rating {
   display: inline-block;
   margin-left: 5px;
+  font-weight: bold;
 }
 
-.about--about, .modal--complaints {
-  margin: -10px 0 -10px 30px;
-}
-
-.modal {
-  margin-top: 40px;
-}
-
-.modal p {
-  text-align: center;
+.about--about h3 {
+  font-size: larger;
+  margin: 15px 0;
 }
 
 a {
@@ -112,26 +110,22 @@ a {
   text-decoration: none;
 }
 
-.modal--complaints--button {
-  margin-top: -10px;
-}
-
-.modal--complaints--button button {
-  background-color: #288331;
-  color: #fff;
-  padding: 15px 15px; 
-  border-radius: 3px;
-  border: none;
-}
-
 .about--text--info {
-  margin: 15px 40px 20px 0;
+  margin: 0px 60px 15px;
+  letter-spacing: 0.5px;
   font-size: 14px;
 }
 
 .about--details {
-  margin: 10px 10px -10px 30px;
   font-size: 14px;
+  margin: 0 60px;
+  letter-spacing: 0.5px;
+}
+
+.about--address, .about--telephone, .about--website {
+  display: flex;
+  gap: 15px;
+  padding: 10px 0;
 }
 
 .fa-map-marker, .fa-phone, .fa-website {
@@ -147,40 +141,36 @@ a {
 }   
 
 .address, .telephone, .website {
-  margin: -20px 40px 20px 25px;
   text-decoration: none;
-}
-
-.modal {
-  font-size: 14px;
-}
-
-.modal p {
-  margin-top: 10px;
-}
-
-.modal-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-
-.modal {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: left;
 }
 
 .submission--thank--you {
   text-align: center;
+}
+
+/* .arrow--back {
+  border-radius: 50%;
+  background-color: rgba(71, 71, 71, 0.1);
+  height: 30px;
+  width: 30px;
+  border: none;
+} */
+
+/* .fa-arrow-left {
+  color: #fff;
+  padding: 6px 0 0;
+  height: 50px;
+} */
+
+.form--back {
+  display: inline-block;
+}
+
+.form--title {
+  vertical-align: 25%;
+  margin-left: 5px;
+  font-weight: 600;
 }
 
 .form-input,
@@ -201,13 +191,20 @@ a {
   color: #000;
 }
 
+.modal {
+  text-align: left;
+  margin: 50px;
+}
+
 .modal--form--header {
   padding-top: 20px;
   font-size: medium;
+  margin: 0 5px;
+  color: #474747;
 }
 
 .tag-chips {
-  margin: 0 0 20px -5px;
+  padding-top: 5px;
 }
 
 .form-textarea {
@@ -223,7 +220,7 @@ form {
   border: none;
   background-color: #288331;
   color: #fff;
-  padding: 10px 100px;
+  padding: 10px 46%;
   margin-top: 15px;
 }
 
@@ -232,8 +229,9 @@ form {
 }
 
 .form--label {
-  position: relative;
+  /* position: relative; */
   margin: 0;
+  color: #474747;
 }
 
 .form--title {
@@ -243,7 +241,7 @@ form {
 
 .rating--label {
   font-size: medium;
-  margin-bottom: 5px;
+  margin: 30px 5px 0;
 }
 
 .rating--rating {

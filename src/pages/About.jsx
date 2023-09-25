@@ -2,18 +2,18 @@ import { useEffect, useState } from "react"
 import servicomService from '../services/servicom'
 import RatedStar from "../components/RatedStar"
 // import StarRating from "../components/StarRating"
-import ModalComplaint from "../modals/ModalComplaint"
 import Address from "../links/Address"
 import PhoneNumber from "../links/PhoneNumber"
 import Website from "../links/Website"
-import { Language, LocationOn, Phone } from "@mui/icons-material"
-import { useParams } from "react-router-dom"
+import { Language, LocationOn, Phone, Star, StarBorder } from "@mui/icons-material"
+import { Link, useParams } from "react-router-dom"
 
 const About = () => {
   const [agency, setAgency] = useState([]);
   const [error, setError] = useState(false);
   const params = useParams();
   const {uniqueGuid} = params;
+  const [selectedRating, setSelectedRating] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +27,10 @@ const About = () => {
     
     fetchData();
   }, [uniqueGuid]);
+
+  const handleRatingClick = (rating) => {
+    setSelectedRating(rating);
+  };
 
   return (
     <div>
@@ -47,21 +51,35 @@ const About = () => {
         </div>
         <hr />
         <div className='about--details'>
-          <div>
+          <div className="about--address">
             <LocationOn style={{ color: 'red' }} fontSize="small" />
-            <div className='address'><Address address={agency.address}/></div>
+            <span className='address'><Address address={agency.address}/></span>
           </div>
-          <div>
+          <div className="about--telephone">
             <Phone color="success" fontSize="small" />
             <div className='telephone'><PhoneNumber number={agency.phoneNumber}/></div>
           </div>
-          <div>
+          <div className="about--website">
             <Language color="primary" />
             <div className='website'><Website website={agency.websiteUrl}/></div>
           </div>
         </div>
         <hr />
-        <ModalComplaint agencyId={agency.id} agencyName={agency.name} />
+        <div className="">
+          <h3>Rate and Review</h3>
+          <div className="star">
+            {[1, 2, 3, 4, 5].map((rating) => (
+              <Link
+                to={`/feedback/${agency.id}`}
+                key={rating}
+                className={`${rating <= selectedRating ? 'filled' : 'empty'}`}
+                onClick={() => handleRatingClick(rating)}
+                >
+                {rating <= selectedRating ? <Star /> : <StarBorder />}
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )
