@@ -121,7 +121,7 @@ const Feedback = ({ agencyId, agencyName }) => {
         ) : (
           <div className="form--label">
             <div className="form--back">
-              <span><ArrowBack /></span>
+              <span onClick={() => navigate(-1)}><ArrowBack /></span>
               <span className="form--title">Feedback</span>
             </div>
             <form className="body--input" onSubmit={handleSubmit}>
