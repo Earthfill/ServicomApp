@@ -110,7 +110,7 @@ const About = () => {
                     handleFeedbackClick()
                   }}
                 >
-                  {rating <= selectedRating ? <Star style={{ fontSize: '48px' }} /> : <StarBorder style={{ fontSize: '20px' }} />}
+                  {rating <= selectedRating ? <Star style={{ fontSize: '48px' }} /> : <StarBorder style={{ fontSize: '30px' }} />}
                 </div>
               ))}
             </div>
