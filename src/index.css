@@ -283,3 +283,7 @@ form {
   border-radius: 3px;
   cursor: pointer;
 }
+
+.loading {
+  margin: 85% 37% auto;
+}
