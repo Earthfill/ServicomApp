@@ -128,7 +128,7 @@ const Feedback = () => {
       setTimeout(() => {
         setIsSubmitted(false);
         setIsOpen(false);
-      }, 3000);
+      }, 12500);
       
     } catch (error) {
       console.error(error);
@@ -141,7 +141,10 @@ const Feedback = () => {
         {isSubmitted ? (
           <div className="submission--thank--you">
             <CheckCircle style={{ color: 'white', fontSize: 48 }}/>
-            <div>Thank you for submitting!</div>
+            <div>
+              Thank you for sharing your feedback. We value your input and will use it to improve our services.
+              Your perspective is essential to our continuous growth and enhancement.
+            </div>
           </div>
         ) : (
           <div className="form--label">
