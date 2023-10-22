@@ -98,8 +98,11 @@ const About = () => {
             </div>
           </div>
           <hr />
-          <div className="">
-            <h3>Rate and Review</h3>
+          <div>
+            <h4>Rate and Review</h4>
+            <div className="about--arrow">
+              Click here to rate
+            </div>
             <div className="about--star">
               {[1, 2, 3, 4, 5].map((rating) => (
                 <div

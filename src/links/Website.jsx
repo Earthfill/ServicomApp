@@ -5,7 +5,14 @@ const Website = ({ website }) => {
 
   return (
     <div>
-			<a href="#" onClick={handleWebsiteClick}>{website}</a>
+			<a 
+        href={`${website}`} 
+        target="_blank" 
+        onClick={handleWebsiteClick} 
+        rel="noreferrer"
+      >
+        {website}
+      </a>
 		</div>
   )
 }
