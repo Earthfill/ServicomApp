@@ -75,7 +75,7 @@ const Feedback = () => {
 
   const handleRatingClick = (rating) => {
     setSelectedRating(rating);
-    setIsOpen(!isOpen)
+    setIsOpen(true)
   };
 
   useEffect(() => {
@@ -266,8 +266,8 @@ const Feedback = () => {
                     value={phoneNumber}
                     onChange={handleInputChange}
                     placeholder="Phone Number"
-                    />
-                    <input
+                  />
+                  <input
                     className="form-input"
                     type="email"
                     required
@@ -275,7 +275,7 @@ const Feedback = () => {
                     value={email}
                     onChange={handleInputChange}
                     placeholder="Email Address"
-                    />
+                  />
                   <div className="button--pair">
                     <button 
                       className="prev--form--button"
