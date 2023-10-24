@@ -352,10 +352,6 @@ form {
   height: 90vh;
 }
 
-.notfound--icon {
-  width: 50%;
-}
-
-.notfound--image {
+.notfound--image, .notfound--icon {
   width: 50%;
 }
