@@ -8,6 +8,7 @@ import PhoneNumber from "../links/PhoneNumber"
 import Website from "../links/Website"
 import { Language, LocationOn, Phone, Star, StarBorder } from "@mui/icons-material"
 import { useNavigate, useParams } from "react-router-dom"
+import NotFound from "./NotFound";
 
 const About = () => {
   const [agency, setAgency] = useState([]);
@@ -63,6 +64,12 @@ const About = () => {
         />
       </div>
     )
+  } else if (!agency.uniqueGuid) {
+    return (
+      <>
+        <NotFound />
+      </>
+    )
   } else {
 
     return (
@@ -93,7 +100,7 @@ const About = () => {
               <div className='telephone'><PhoneNumber number={agency.phoneNumber}/></div>
             </div>
             <div className="about--website">
-              <Language color="primary" />
+              <Language color="primary" fontSize="small" />
               <div className='website'><Website website={agency.websiteUrl}/></div>
             </div>
           </div>
